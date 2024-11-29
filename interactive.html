@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Greeting</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+            text-align: center;
+        }
+        input {
+            padding: 10px;
+            font-size: 1rem;
+            margin-top: 20px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            margin-top: 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        p {
+            font-size: 1.2rem;
+            color: #333;
+            opacity: 0;
+            transform: scale(0.5);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        .error {
+            color: red;
+            font-size: 1rem;
+        }
+        .visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Interactive Greeting</h1>
+
+    <label for="nameInput">Enter your name:</label>
+    <br>
+    <input type="text" id="nameInput" placeholder="Your Name">
+    <br>
+    <button id="greetButton">Greet Me</button>
+
+    <p id="greetingMessage" class="greeting"></p>
+    <p id="errorMessage" class="error"></p> <!-- Error message -->
+
+    <script>
+        // JavaScript to handle the interaction
+        document.getElementById('greetButton').addEventListener('click', function() {
+            // Get the value of the input field
+            var userName = document.getElementById('nameInput').value.trim();
+            
+            // // Clear any previous error message or greeting
+            // document.getElementById('errorMessage').textContent = '';
+            // document.getElementById('greetingMessage').textContent = ''; 
+            
+            // Remove the "visible" class to hide greeting and error messages
+            document.getElementById('greetingMessage').classList.remove('visible');
+            document.getElementById('errorMessage').classList.remove('visible');
+
+            // Validate that the input field is not empty
+            if (userName === '') {
+                // Display an error message if input is empty
+                document.getElementById('errorMessage').textContent = 'Please enter your name to be greeted.';
+                document.getElementById('errorMessage').classList.add('visible');
+            } else {
+                // Display the personalized greeting message with animation
+                document.getElementById('greetingMessage').textContent = "Hello, " + userName + "! Welcome to our website!";
+                document.getElementById('greetingMessage').classList.add('visible');
+            }
+        });
+    </script>
+
+</body>
+</html>
